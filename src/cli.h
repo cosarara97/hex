@@ -1,5 +1,8 @@
 #ifndef CLI_H_
 #define CLI_H_
+#include <argp.h>
+
+#define VERSION "0.0.1"
 
 /// A command line interface of the editor.
 class CLI

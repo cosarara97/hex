@@ -1,8 +1,6 @@
 #ifndef EDITOR_H_
 #define EDITOR_H_
 
-#define VERSION "0.0.1"
-
 #include "file.h"
 #include "file_view.h"
 #include "cmd_line_view.h"
