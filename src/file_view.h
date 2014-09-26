@@ -47,6 +47,9 @@ public:
   /// @param [in] buffer The file buffer to be rendered.
   void RenderASCII (unsigned char * buffer,
                     int size);
+
+  void RenderCustomEncoding (unsigned char * buffer,
+                    int size);
   
   /// Renders line numbers.
   void RenderLineNums ();
@@ -55,6 +58,8 @@ public:
 
   /// Binds a given file to the view.
   void Bind (File * file);
+
+  char custom_encoding[0x100];
 
 private:
 

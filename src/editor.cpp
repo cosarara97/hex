@@ -4,6 +4,7 @@
 #include "cmd_mode.h"
 #include "normal_mode.h"
 #include "insert_mode.h"
+#include "table_parsing.h"
 
 Editor::Editor ()
 {
@@ -42,6 +43,11 @@ void Editor::Init ()
 
   m_Mode        = m_NormalMode;
 
+}
+
+void Editor::LoadTable (char * name)
+{
+  load_table(name, m_FileView->custom_encoding);
 }
 
 void Editor::OpenFile (char * name)

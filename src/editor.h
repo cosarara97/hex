@@ -30,6 +30,8 @@ public:
   /// If it doesn't exist it creates an empty file.
   void OpenFile (char * name);
 
+  void LoadTable (char * name);
+
   /// Runs the editor.
   void Run ();
 

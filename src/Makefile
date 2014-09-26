@@ -5,7 +5,9 @@ LDFLAGS=-Wall -pedantic
 LIBS=-lncurses
 
 BIN=hex
-OBJECTS=main.o editor.o cli.o file.o window.o view.o file_view.o cmd_line_view.o mode.o normal_mode.o cmd_mode.o insert_mode.o subject.o config.o
+OBJECTS=main.o editor.o cli.o file.o window.o view.o file_view.o \
+	cmd_line_view.o mode.o normal_mode.o cmd_mode.o insert_mode.o \
+	subject.o config.o table_parsing.o
 
 PREFIX?=/usr/local
 INSTALL_BIN=$(PREFIX)/bin

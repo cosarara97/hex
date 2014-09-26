@@ -19,7 +19,6 @@ FileView::FileView (int lines, int cols, int y0, int x0)
   m_FileVersion = 0;
 
   Configure();
-
 }
 
 FileView::~FileView ()
@@ -97,8 +96,12 @@ void FileView::Render ()
   RenderHexadecimal(buffer, size);
 
   // Render ASCII
-  if (m_ShowASCII)
-    RenderASCII(buffer, size);
+  if (m_ShowASCII) {
+    if (custom_encoding != NULL)
+      RenderCustomEncoding(buffer, size);
+    else
+      RenderASCII(buffer, size);
+  }
 
   // Place the cursor at the right place
   MoveCursor(pos);
@@ -165,6 +168,30 @@ void FileView::RenderASCII (unsigned char * buffer, int size)
     for (j = 0; j < min(m_BytesPerLine, size); j ++) {
       if (isprint(line[j]))
         Put(line[j]);
+      else
+        Put('.');
+    }
+
+    line += m_BytesPerLine;
+    size -= m_BytesPerLine;
+  }
+
+}
+
+void FileView::RenderCustomEncoding (unsigned char * buffer, int size)
+{
+  unsigned char * line = buffer;
+  int i, j;
+  char c;
+
+  for (i = 0; i < m_Height; i++) {
+
+    Move(i, m_ASCIIOffset);
+
+    for (j = 0; j < min(m_BytesPerLine, size); j ++) {
+      c = custom_encoding[line[j]];
+      if (isprint(c))
+        Put(c);
       else
         Put('.');
     }

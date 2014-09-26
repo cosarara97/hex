@@ -62,17 +62,16 @@ void CLI::Run (int argc, char ** argv)
   struct arguments arguments;
   arguments.table = 0;
   argp_parse (&argp, argc, argv, 0, 0, &arguments);
-  std::cout << arguments.file_name << std::endl;
-  if (arguments.table != 0) {
-    std::cout << arguments.table << std::endl;
-  }
+  //std::cout << arguments.file_name << std::endl;
 
   // Initialize editor
   editor.Init();
 
   editor.OpenFile(arguments.file_name);
 
-  // editor.LoadEncodingTable(arguments.table);
+  if (arguments.table != 0) {
+    editor.LoadTable(arguments.table);
+  }
 
   // Start editor
   editor.Run();
